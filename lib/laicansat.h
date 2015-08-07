@@ -6,6 +6,7 @@ class BarometerClass;
 #include <WProgram.h>
 
 #include <utility/BarometerClass.h>
+#include <utility/GyrometerClass.h>
 
 class LaicansatClass
 {
