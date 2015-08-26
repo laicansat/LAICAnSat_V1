@@ -2,11 +2,14 @@
 #define _LAICANSAT_H
 
 class BarometerClass;
+class GyrometerClass;
+class AccelerometerClass;
 
 #include <WProgram.h>
 
-#include <utility/BarometerClass.h>
-#include <utility/GyrometerClass.h>
+#include <utility/Barometer.h>
+#include <utility/Gyrometer.h>
+#include <utility/Accelerometer.h>
 
 class LaicansatClass
 {
@@ -14,9 +17,10 @@ public:
 	LaicansatClass();
 	~LaicansatClass();
 
-	BarometerClass* bmp;
+	BarometerClass* bar;
 	GyrometerClass* gyro;
-}
+	AccelerometerClass* accel;
+};
 
 extern LaicansatClass laicansat;
 

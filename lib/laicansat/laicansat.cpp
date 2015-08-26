@@ -4,12 +4,14 @@ LaicansatClass laicansat;
 
 LaicansatClass::LaicansatClass()
 {
-	this->bmp = new LaicansatClass;
+	this->bar = new BarometerClass;
 	this->gyro = new GyrometerClass;
+	this->accel = new AccelerometerClass;
 }
 
 LaicansatClass::~LaicansatClass()
 {
-	delete this->bmp;
+	delete this->bar;
 	delete this->gyro;
+	delete this->accel;
 }

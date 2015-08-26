@@ -8,15 +8,14 @@
 class BarometerClass
 {
 public:
-	BMP180* bmp;
+	SFE_BMP180 *bmp;
 
 	int pressureBaseline;
 
 	void begin();
 	double getPressure();
 	double getAltitude();
-	double getTemperature();
-	void show();
-}
+	double getTemperature(char mode);
+};
 
 #endif

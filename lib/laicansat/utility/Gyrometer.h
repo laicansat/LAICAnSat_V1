@@ -1,20 +1,17 @@
 #ifndef _GYROMETER_H
 #define _GYROMETER_H
 
-#include "L3G.h"
+#include "Adafruit_L3GD20.h"
 
 #include "../laicansat.h"
 
 class GyrometerClass
 {
 public:
-	L3G* gyro;
-
-	int pressureBaseline;
+	Adafruit_L3GD20* l3g;
 
 	void begin();
-	double getGyro();
-	void show();
-}
+	void getAngularSpeed(double *arrayAngSpeed);
+};
 
 #endif
