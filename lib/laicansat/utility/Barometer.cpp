@@ -6,9 +6,9 @@ void BarometerClass::begin()
 
 	while(!this->bmp->begin())
 	{
-    	Serial.println("BMP180 could not start. Trying again.");
-    	delay(500);
-    }
+  	Serial.println("BMP180 could not start. Trying again.");
+  	delay(500);
+  }
 
     Serial.println("BMP180 initiation successful!");
   	 

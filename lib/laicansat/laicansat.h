@@ -5,6 +5,7 @@ class BarometerClass;
 class GyrometerClass;
 class AccelerometerClass;
 class HygrometerClass;
+class ThermometerClass;
 
 #include <WProgram.h>
 
@@ -12,6 +13,7 @@ class HygrometerClass;
 #include <utility/Gyrometer.h>
 #include <utility/Accelerometer.h>
 #include <utility/Hygrometer.h>
+#include <utility/Thermometer.h>
 
 class LaicansatClass
 {
@@ -23,6 +25,7 @@ public:
 	GyrometerClass* gyro;
 	AccelerometerClass* accel;
 	HygrometerClass* hygro;
+	ThermometerClass* thermo;
 };
 
 extern LaicansatClass laicansat;

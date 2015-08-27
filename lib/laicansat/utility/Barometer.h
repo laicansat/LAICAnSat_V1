@@ -5,6 +5,8 @@
 
 #include "../laicansat.h"
 
+enum BarometerMode {BMP180_BAROMODE, BMP085_BAROMODE, MS5611_BAROMODE};
+
 class BarometerClass
 {
 public:
@@ -15,7 +17,6 @@ public:
 	void begin();
 	double getPressure();
 	double getAltitude();
-	double getTemperature(char mode);
 };
 
 #endif

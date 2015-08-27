@@ -8,6 +8,7 @@ LaicansatClass::LaicansatClass()
 	this->gyro = new GyrometerClass;
 	this->accel = new AccelerometerClass;
 	this->hygro = new HygrometerClass;
+	this->thermo = new ThermometerClass;
 }
 
 LaicansatClass::~LaicansatClass()
@@ -16,4 +17,5 @@ LaicansatClass::~LaicansatClass()
 	delete this->gyro;
 	delete this->accel;
 	delete this->hygro;
+	delete this->thermo;
 }
