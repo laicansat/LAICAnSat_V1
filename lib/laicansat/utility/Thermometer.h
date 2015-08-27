@@ -4,6 +4,8 @@
 #include "BMP180.h"
 #include "MS5611.h"
 #include "SHT1x.h"
+#include "Adafruit_BMP085.h"
+#include "DallasTemperature.h"
 
 #include "../laicansat.h"
 
@@ -21,9 +23,10 @@ class ThermometerClass
 {
 public:
 	SFE_BMP180 *bmp180;
-
+	DallasTemperature *ds18b20;
 	MS5611 *ms5611;
 	SHT1x *sht15;
+	Adafruit_BMP085 *bmp085;
 
 	char thermo_mode = BMP180_THERMOMODE;
 

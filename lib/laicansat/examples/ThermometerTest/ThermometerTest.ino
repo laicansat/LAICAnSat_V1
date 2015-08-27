@@ -13,12 +13,16 @@ void setup()
 {
   Serial.begin(9600);
   
-  laicansat.thermo->begin(SHT15_THERMOMODE); 
+  Serial.println("Teste");
+  laicansat.thermo->begin(DS18B20_THERMOMODE); 
+  Serial.println("Initiated!");
   delay(100);
 }
 
 void loop()
 {
+  Serial.println("Loop!");
+  
   double temperature = laicansat.thermo->getTemperature();
   
   Serial.println(temperature);

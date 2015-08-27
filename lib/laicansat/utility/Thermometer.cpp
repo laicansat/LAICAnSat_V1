@@ -1,4 +1,5 @@
 #include "Thermometer.h"
+#include "OneWire.h"
 
 void ThermometerClass::begin(char mode)
 {
@@ -51,6 +52,9 @@ void ThermometerClass::beginBMP180()
 
 void ThermometerClass::beginDS18B20()
 {
+  OneWire oneWire(SCL_PIN);
+  this->ds18b20 = new DallasTemperature(&oneWire);
+  this->ds18b20->begin();
 }
 
 void ThermometerClass::beginMS5611()
@@ -78,6 +82,15 @@ void ThermometerClass::beginSHT15()
 
 void ThermometerClass::beginBMP085()
 {
+  this->bmp085 = new Adafruit_BMP085();
+
+  while(!this->bmp085->begin())
+  {
+    Serial.println("BMP085 could not start. Trying again.");
+    delay(500);
+  }
+
+  Serial.println("BMP085 initiation successful!");
 }
 
 double ThermometerClass::getTemperature()
@@ -89,7 +102,7 @@ double ThermometerClass::getTemperature()
     break;
 
     case DS18B20_THERMOMODE:
-
+      return getTemperatureDS18B20();
     break;
 
     case MS5611_THERMOMODE:
@@ -101,7 +114,7 @@ double ThermometerClass::getTemperature()
     break;
 
     case BMP085_THERMOMODE:
-
+      return getTemperatureBMP085();
     break;
 
     case MEAN_THERMOMODE:
@@ -128,6 +141,12 @@ double ThermometerClass::getTemperatureBMP180()
   return -1;
 }
 
+double ThermometerClass::getTemperatureDS18B20()
+{
+  this->ds18b20->requestTemperatures(); // Send the command to get temperatures
+  return (double) this->ds18b20->getTempCByIndex(0);
+}
+
 double ThermometerClass::getTemperatureMS5611()
 {
   return this->ms5611->readTemperature();
@@ -136,4 +155,9 @@ double ThermometerClass::getTemperatureMS5611()
 double ThermometerClass::getTemperatureSHT15()
 {
   return (double) this->sht15->readTemperatureC();
+}
+
+double ThermometerClass::getTemperatureBMP085()
+{
+  return (double) this->bmp085->readTemperature();
 }
