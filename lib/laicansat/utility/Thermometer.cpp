@@ -1,3 +1,12 @@
+/*
+Resources:
+- BMP180 GitHub: https://github.com/sparkfun/BMP180_Breakout
+- BMP085 GitHub: https://github.com/adafruit/Adafruit-BMP085-Library
+- One Wire Digital Temperature. DS18B20 + Arduino: http://bildr.org/2011/07/ds18b20-arduino/
+- DS18B20 GitHub: https://github.com/milesburton/Arduino-Temperature-Control-Library
+
+*/
+
 #include "Thermometer.h"
 #include "OneWire.h"
 
@@ -121,6 +130,8 @@ double ThermometerClass::getTemperature()
 
     break;
   }
+
+  return -1;
 }
 
 double ThermometerClass::getTemperatureBMP180()

@@ -14,17 +14,18 @@ void setup()
   Serial.begin(9600);
   
   Serial.println("Teste");
-  laicansat.thermo->begin(DS18B20_THERMOMODE); 
+  laicansat.thermo->begin(BMP180_THERMOMODE); 
+  laicansat.bar->begin(BMP180_BAROMODE);
   Serial.println("Initiated!");
   delay(100);
 }
 
 void loop()
 {
-  Serial.println("Loop!");
-  
   double temperature = laicansat.thermo->getTemperature();
+  double pressure = laicansat.bar->getPressure();
   
   Serial.println(temperature);
+  Serial.println(pressure);
   delay(100);
 }

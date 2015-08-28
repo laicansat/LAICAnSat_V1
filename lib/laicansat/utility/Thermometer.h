@@ -22,11 +22,11 @@
 class ThermometerClass
 {
 public:
-	SFE_BMP180 *bmp180;
-	DallasTemperature *ds18b20;
-	MS5611 *ms5611;
-	SHT1x *sht15;
-	Adafruit_BMP085 *bmp085;
+	SFE_BMP180 *bmp180;						// Functional
+	DallasTemperature *ds18b20;				// Non-functional
+	MS5611 *ms5611;							// Functional
+	SHT1x *sht15;							// Functional
+	Adafruit_BMP085 *bmp085;				// Functional
 
 	char thermo_mode = BMP180_THERMOMODE;
 
