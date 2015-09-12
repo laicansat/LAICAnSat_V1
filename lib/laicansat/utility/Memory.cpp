@@ -22,25 +22,29 @@ void MemoryClass::inicializeSDcard(){
 
 }
 
-void MemoryClass::writeSDcard(){
+void MemoryClass::writeSDcard(Data[10]){
  
 
-  File dataFile = SD.open("datalog.txt", FILE_WRITE);
+  File dataFile = SD.open("LAICAnSat_datalog.csv", FILE_WRITE);
  
   // if the file is available, write to it:
   if (dataFile) {
-    dataFile.println(Data[10]);
-    dataFile.close();
+    dataFile.println(Data[]);
+    
     // print to the serial port too:
     Serial.println(dataString);
   }
   // if the file isn't open, pop up an error:
   else {
-    Serial.println("error opening datalog.txt");
+    Serial.println("error opening LAICAnSat_datalog.csv");
   }
 
 
 
 }
 
-void MemoryClass::closeSDcard()
+void MemoryClass::closeSDcard(){
+
+	dataFile.close();
+
+}
