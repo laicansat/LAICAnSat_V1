@@ -8,15 +8,16 @@
  BMP085_THERMOMODE  =   5
  MEAN_THERMOMODE    =   6
 **/
-
+const int led = LED_BUILTIN;
 void setup()
 {
   Serial.begin(9600);
   
   Serial.println("Teste");
-  laicansat.thermo->begin(BMP180_THERMOMODE); 
-  laicansat.bar->begin(BMP180_BAROMODE);
+  laicansat.thermo->begin(BMP085_THERMOMODE); 
+  laicansat.bar->begin(BMP085_BAROMODE);
   Serial.println("Initiated!");
+   pinMode(led, OUTPUT);
   delay(100);
 }
 
@@ -27,5 +28,8 @@ void loop()
   
   Serial.println(temperature);
   Serial.println(pressure);
+   digitalWrite(led, HIGH);
+  delay(100);
+  digitalWrite(led, LOW);
   delay(100);
 }
