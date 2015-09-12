@@ -11,8 +11,8 @@ class MemoryClass{
 public:
 	double Data[10];
 	void inicializeSDcard(); 
-	void writeSDcard(Data[10]);
-	v
+	void writeSDcard(double Data[10]);
+	void closeSDcard();
 private:
 	const int _chipSelect = 62;
 };

@@ -22,14 +22,14 @@ void MemoryClass::inicializeSDcard(){
 
 }
 
-void MemoryClass::writeSDcard(Data[10]){
+void MemoryClass::writeSDcard(Data){
  
 
   File dataFile = SD.open("LAICAnSat_datalog.csv", FILE_WRITE);
  
   // if the file is available, write to it:
   if (dataFile) {
-    dataFile.println(Data[]);
+    dataFile.println(Data);
     
     // print to the serial port too:
     Serial.println(dataString);
