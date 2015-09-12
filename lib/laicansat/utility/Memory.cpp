@@ -1,6 +1,6 @@
+
+
 #include Memory.h
-
-
 
 
 
@@ -10,7 +10,7 @@ void MemoryClass::inicializeSDcard(){
   Serial.begin(9600);
   Serial.print("Initializing SD card...");
 
-  pinMode(53, OUTPUT);
+  pinMode(62, OUTPUT);
  
   	if (!SD.begin(_chipSelect)) {
     Serial.println("Card failed, or not present");
@@ -21,3 +21,26 @@ void MemoryClass::inicializeSDcard(){
 
 
 }
+
+void MemoryClass::writeSDcard(){
+ 
+
+  File dataFile = SD.open("datalog.txt", FILE_WRITE);
+ 
+  // if the file is available, write to it:
+  if (dataFile) {
+    dataFile.println(Data[10]);
+    dataFile.close();
+    // print to the serial port too:
+    Serial.println(dataString);
+  }
+  // if the file isn't open, pop up an error:
+  else {
+    Serial.println("error opening datalog.txt");
+  }
+
+
+
+}
+
+void MemoryClass::closeSDcard()

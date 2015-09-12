@@ -9,8 +9,10 @@
 class MemoryClass{
 
 public:
+	double Data[10];
 	void inicializeSDcard(); 
 	void writeSDcard();
+	void closeSDcard();
 private:
 	const int _chipSelect = 62;
 };
