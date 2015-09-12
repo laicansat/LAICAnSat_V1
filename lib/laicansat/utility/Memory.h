@@ -1,7 +1,7 @@
 #ifndef _MEMORY_H
 #define _MEMORY_H
 
-#include "Arduino.h"
+
 #include "SD.h"
 
 #include "../laicansat.h"
@@ -9,11 +9,11 @@
 class MemoryClass{
 
 public:
-	void inicializeSDcard();
-	void 
+	void inicializeSDcard(); 
+	void writeSDcard();
 private:
-	const int chipSelect = 62;
-}
+	const int _chipSelect = 62;
+};
 
 
 #endif
