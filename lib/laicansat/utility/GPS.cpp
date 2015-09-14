@@ -3,7 +3,7 @@
 
 void GPSClass::beginGPS(){
 
-	this->gps_ublox = new GPS();
+	this->gps_ublox = new GPS_UBLOX_Class();
 	Serial.print("Initializing GPS...");
 
 	while (!this->gps_ublox->Init())

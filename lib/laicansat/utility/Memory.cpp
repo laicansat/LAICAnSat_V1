@@ -8,7 +8,7 @@ void MemoryClass::inicializeSDcard(){
 
   pinMode(62, OUTPUT);
 
-  this->card = new SD();
+  this->card = new SDClass();
 
   Serial.print("Initializing SD card...");
 

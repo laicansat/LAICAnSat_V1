@@ -1,15 +1,14 @@
 #ifndef _MEMORY_H
 #define _MEMORY_H
 
+#include <SD.h>
 
-#include "SD.h"
-
-#include "../laicansat.h"
+#include <../laicansat.h>
 
 class MemoryClass{
 
 public:
-	SD *card;
+	SDClass *card;
 	double *Arraydata;
 	void inicializeSDcard(); 
 	void writeSDcard(double *Arraydata);

@@ -1,17 +1,17 @@
-
+#include <laicansat.h>
 
 void setup()
 {
   Serial.begin(9600);
   
-  laicansat.bmp.begin(); 
+  laicansat.bar->begin(BMP085_BAROMODE); 
   delay(100);
 }
 
 void loop()
 {
-  double pressure = laicansat.bmp.getPressure();
-  
-  Serial.writeln(pressure);
+  double pressure = laicansat.bar->getPressure();
+ 
+  Serial.println(pressure);
   delay(100);
 }
