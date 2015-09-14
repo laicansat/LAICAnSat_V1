@@ -6,13 +6,14 @@
 
 void MemoryClass::inicializeSDcard(){
 
+  pinMode(62, OUTPUT);
 
-  Serial.begin(9600);
+  this->card = new SD();
+
   Serial.print("Initializing SD card...");
 
-  pinMode(62, OUTPUT);
- 
-  	if (!SD.begin(_chipSelect)) {
+  
+    if (!this->card->begin(_chipSelect)) {
     Serial.println("Card failed, or not present");
     
     return;
@@ -22,21 +23,21 @@ void MemoryClass::inicializeSDcard(){
 
 }
 
-void MemoryClass::writeSDcard(Data){
+void MemoryClass::writeSDcard(double *Arraydata){
  
 
-  File dataFile = SD.open("LAICAnSat_datalog.csv", FILE_WRITE);
+  File dataFile = this->card->open("LAICAnSat_datalog.txt", FILE_WRITE);
  
   // if the file is available, write to it:
   if (dataFile) {
-    dataFile.println(Data);
+    dataFile.println(Arraydata);
     
     // print to the serial port too:
-    Serial.println(dataString);
+    Serial.println(Arraydata);
   }
   // if the file isn't open, pop up an error:
   else {
-    Serial.println("error opening LAICAnSat_datalog.csv");
+    Serial.println("error opening LAICAnSat_datalog.txt");
   }
 
 

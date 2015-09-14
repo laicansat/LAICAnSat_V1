@@ -9,6 +9,8 @@ LaicansatClass::LaicansatClass()
 	this->accel = new AccelerometerClass;
 	this->hygro = new HygrometerClass;
 	this->thermo = new ThermometerClass;
+	this->memSD = new MemoryClass;
+	this->gps = new GPSClass;
 }
 
 LaicansatClass::~LaicansatClass()
@@ -18,4 +20,6 @@ LaicansatClass::~LaicansatClass()
 	delete this->accel;
 	delete this->hygro;
 	delete this->thermo;
+	delete this->memSD;
+	delete this->GPSClass;
 }
