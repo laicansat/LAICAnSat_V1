@@ -21,5 +21,5 @@ LaicansatClass::~LaicansatClass()
 	delete this->hygro;
 	delete this->thermo;
 	delete this->memSD;
-	delete this->GPSClass;
+	delete this->gps;
 }

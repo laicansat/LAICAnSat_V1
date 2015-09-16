@@ -1,8 +1,8 @@
 #ifndef GPS_UBLOX_h
 #define GPS_UBLOX_h
-#include <arduino.h>
+#include <Arduino.h>
 #include <inttypes.h>
-#include <String.h>
+#include <string.h>
 
 #define UBX_MAX_SIZE 60
 
