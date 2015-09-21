@@ -1,20 +1,16 @@
+//AMBOS SENSORES DO SHT15 FUNCIONANDO SIMULTANEAMENTE
+
 #include<laicansat.h>
 
-/**
- BMP180_THERMOMODE  =   1
- DS18B20_THERMOMODE =   2
- MS5611_THERMOMODE  =   3
- SHT15_THERMOMODE   =   4
- BMP085_THERMOMODE  =   5
- MEAN_THERMOMODE    =   6
-**/
 const int led = LED_BUILTIN;
 void setup()
 {
   Serial.begin(9600);
   
   
-  laicansat.thermo->begin(MS5611_THERMOMODE); 
+  laicansat.thermo->begin(SHT15_THERMOMODE); 
+  laicansat.hygro->begin(); 
+ 
   
   pinMode(led, OUTPUT);
   delay(100);
@@ -23,8 +19,11 @@ void setup()
 void loop()
 {
   double temperature = laicansat.thermo->getTemperature();
+  double humidity = laicansat.hygro->getHumidity();
   
-  
+  Serial.print("Humidity: ");
+  Serial.println(humidity);
+  Serial.print("Temperature: ");
   Serial.println(temperature);
   digitalWrite(led, HIGH);
   delay(100);

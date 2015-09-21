@@ -6,7 +6,7 @@ void setup()
 {
   Serial.begin(9600);
   
-  laicansat.bar->begin(BMP085_BAROMODE); 
+  laicansat.bar->begin(MS5611_BAROMODE); 
   delay(100);
 }
 
