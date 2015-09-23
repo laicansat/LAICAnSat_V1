@@ -82,6 +82,8 @@ void GPS_UBLOX_Class::Init(void)
 	// Initialize serial port
 	#if defined(__AVR_ATmega1280__)
 		Serial1.begin(38400);         // Serial port 1 on ATMega1280
+  #elif defined(__MK20DX128__) || defined(__MK20DX256__)
+    Serial2.begin(38400);
 	#else
 		Serial.begin(38400);
 	#endif
@@ -94,17 +96,24 @@ void GPS_UBLOX_Class::Read(void)
   int numc;
   
   #if defined(__AVR_ATmega1280__) || (__AVR_ATmega2560__)    // If AtMega1280 then Serial port 1...
-	numc = Serial1.available();
+	
+     numc = Serial1.available();
+  #elif defined(__MK20DX128__) || defined(__MK20DX256__)
+     numc = Serial2.available();
+
   #else
-	numc = Serial.available();
+  
+	   numc = Serial.available();
   #endif
   if (numc > 0)
     for (int i=0;i<numc;i++)  // Process bytes received
       {
 	  #if defined(__AVR_ATmega1280__) || (__AVR_ATmega2560__)
         data = Serial1.read();
-      #else
-		data = Serial.read();
+    #elif defined(__MK20DX128__) || defined(__MK20DX256__)
+        data = Serial2.read();
+    #else
+		    data = Serial.read();
 	  #endif
       switch(UBX_step)    
       {
@@ -653,10 +662,22 @@ return(itoa(number, Buffer, 10));
  // Send a byte array of UBX protocol to the GPS
 void GPS_UBLOX_Class::sendUBX(int *MSG, int len) {
   for(int i=0; i<len; i++) {
+    #if defined(__AVR_ATmega1280__) || (__AVR_ATmega2560__)    // If AtMega1280 then Serial port 1...
+     Serial1.write(MSG[i]);
+    #elif defined(__MK20DX128__) || defined(__MK20DX256__)
+     Serial2.write(MSG[i]);
+    #else
     Serial.write(MSG[i]);
+    #endif
    // Serial.print(MSG[i], HEX);
   }
-  Serial.println();
+  #if defined(__AVR_ATmega1280__) || (__AVR_ATmega2560__)    // If AtMega1280 then Serial port 1...
+     Serial1.println();
+    #elif defined(__MK20DX128__) || defined(__MK20DX256__)
+     Serial2.println();
+    #else
+    Serial.println();
+    #endif
 }
 
 // Calculate expected UBX ACK packet and parse UBX response from GPS

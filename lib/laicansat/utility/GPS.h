@@ -9,7 +9,7 @@
 class GPSClass{
 
 public:
-	GPS_UBLOX_Class* gps_ublox;
+	GPS_UBLOX_Class *gps_ublox;
 	
 	
 	void beginGPS(); 

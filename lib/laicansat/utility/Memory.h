@@ -1,10 +1,11 @@
 #ifndef _MEMORY_H
 #define _MEMORY_H
 
-#include "SD.h"
+#include <SD.h>
 
 #include "../laicansat.h"
 
+//CS laicansat = 62
 class MemoryClass{
 
 public:
@@ -14,7 +15,7 @@ public:
 	void writeSDcard(double *Arraydata);
 	void closeSDcard();
 private:
-	const int _chipSelect = 62;
+	const int _chipSelect = 20;
 };
 
 

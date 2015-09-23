@@ -1,18 +1,19 @@
-
 #include <laicansat.h>
+
+
 
 double gpsData[7] = {0,0,0,0,0,0,0};
 
 void setup() {
-  Serial.begin(38400);//GPS Ublox Baud rate
+  Serial.begin(9600);//GPS Ublox Baud rate
   
-  //laicansat.gps->beginGPS();
-  delay(100);
+  laicansat.gps->beginGPS();
+  delay(2000);
 }
 
 void loop() {
-  laicansat.gps->beginGPS();
-  /*laicansat.gps->getData(gpsData);
+ 
+  laicansat.gps->getData(gpsData);
   
   Serial.println("DADOS GPS");
   Serial.print(gpsData[0]);
@@ -28,6 +29,6 @@ void loop() {
   Serial.print(gpsData[5]);
   Serial.println(", ");
   Serial.println(gpsData[6]);
-  delay(1000);*/
+  delay(1000);
   
  }

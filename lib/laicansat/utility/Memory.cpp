@@ -3,11 +3,11 @@
 #include "Memory.h"
 
 
-
+//CS laicansat = 62
 void MemoryClass::inicializeSDcard(){
 
-  pinMode(62, OUTPUT);
-
+  pinMode(20, OUTPUT);
+ #error marina
   this->card = new SDClass();
 
   Serial.print("Initializing SD card...");
@@ -47,5 +47,7 @@ void MemoryClass::writeSDcard(double *Arraydata){
 void MemoryClass::closeSDcard(){
 
 	dataFile.close();
+  //call this when a card is removed. It will allow you to insert and initialise a new card.
+  this->card->end();
 
 }

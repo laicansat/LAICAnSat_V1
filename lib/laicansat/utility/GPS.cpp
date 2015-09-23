@@ -1,18 +1,15 @@
-#include GPS.h
+#include "GPS.h"
 
 
 void GPSClass::beginGPS(){
 
 	this->gps_ublox = new GPS_UBLOX_Class();
+	
 	Serial.print("Initializing GPS...");
 
-	while (!this->gps_ublox->Init())
-  {
-    Serial.println("GPS could not start. Trying again.");
-    delay(500);
-  }
-
-  Serial.println("GPS initiation successful!");
+	this->gps_ublox->Init();
+ 
+  	Serial.println("GPS initiation successful!");
 
 }
 
@@ -34,4 +31,5 @@ void GPSClass::getData(double *gpsData){
 
 		}
 		gps_ublox->NewData = 0;
+
 }
