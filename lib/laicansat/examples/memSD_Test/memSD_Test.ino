@@ -4,8 +4,8 @@
 
 /*
  CS = 20
- MOSI = 7
- MISO = 8
+ MOSI(DOUT)= 7
+ MISO(DIN) = 8
  SCK = 14 
  
  */
@@ -31,6 +31,8 @@ void setup()
   // make sure that the default chip select pin is set to
   // output, even if you don't use it:
   pinMode(SS, OUTPUT);
+  pinMode(led,OUTPUT);
+
   
   // see if the card is present and can be initialized:
   if (!SD.begin(chipSelect)) {

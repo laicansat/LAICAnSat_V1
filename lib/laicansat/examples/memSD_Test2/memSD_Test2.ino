@@ -4,8 +4,8 @@
 
 /*
  CS = 20
- MOSI = 7
- MISO = 8
+ MOSI(DOUT) = 7
+ MISO(DIN) = 8
  SCK = 14 
  
  BAUD RATE 38400
@@ -30,7 +30,7 @@ void setup()
   SPI.setMOSI(7);
   SPI.setMISO(8);
   SPI.setSCK(14);
-  Serial.begin(38400);
+  Serial.begin(9600);
   delay(3500);
   Serial.print("Initializing SD card...");
   pinMode(SS, OUTPUT);
@@ -44,9 +44,9 @@ void setup()
   Serial.println("card initialized.");
   
 
-  dataFile = SD.open("laicansat1.txt", FILE_WRITE);
+  dataFile = SD.open("datalog.txt", FILE_WRITE);
   if (! dataFile) {
-    Serial.println("error opening laicansat1.txt");
+    Serial.println("error opening datalog.txt");
     while (1) ;
   }
   laicansat.gps->beginGPS();
