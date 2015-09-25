@@ -5,8 +5,8 @@
 
 #include "../laicansat.h"
 
-#define SDA_PIN 18
-#define SCL_PIN 19
+#define SDA_PIN 17
+#define SCL_PIN 16
 
 class HygrometerClass
 {

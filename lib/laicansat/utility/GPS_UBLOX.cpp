@@ -83,7 +83,7 @@ void GPS_UBLOX_Class::Init(void)
 	#if defined(__AVR_ATmega1280__)
 		Serial1.begin(38400);         // Serial port 1 on ATMega1280
   #elif defined(__MK20DX128__) || defined(__MK20DX256__)
-    Serial2.begin(38400);
+    Serial1.begin(38400);
 	#else
 		Serial.begin(38400);
 	#endif
@@ -99,7 +99,7 @@ void GPS_UBLOX_Class::Read(void)
 	
      numc = Serial1.available();
   #elif defined(__MK20DX128__) || defined(__MK20DX256__)
-     numc = Serial2.available();
+     numc = Serial1.available();
 
   #else
   
@@ -111,7 +111,7 @@ void GPS_UBLOX_Class::Read(void)
 	  #if defined(__AVR_ATmega1280__) || (__AVR_ATmega2560__)
         data = Serial1.read();
     #elif defined(__MK20DX128__) || defined(__MK20DX256__)
-        data = Serial2.read();
+        data = Serial1.read();
     #else
 		    data = Serial.read();
 	  #endif
@@ -665,7 +665,7 @@ void GPS_UBLOX_Class::sendUBX(int *MSG, int len) {
     #if defined(__AVR_ATmega1280__) || (__AVR_ATmega2560__)    // If AtMega1280 then Serial port 1...
      Serial1.write(MSG[i]);
     #elif defined(__MK20DX128__) || defined(__MK20DX256__)
-     Serial2.write(MSG[i]);
+     Serial1.write(MSG[i]);
     #else
     Serial.write(MSG[i]);
     #endif
@@ -674,7 +674,7 @@ void GPS_UBLOX_Class::sendUBX(int *MSG, int len) {
   #if defined(__AVR_ATmega1280__) || (__AVR_ATmega2560__)    // If AtMega1280 then Serial port 1...
      Serial1.println();
     #elif defined(__MK20DX128__) || defined(__MK20DX256__)
-     Serial2.println();
+     Serial1.println();
     #else
     Serial.println();
     #endif

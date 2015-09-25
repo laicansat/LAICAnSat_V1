@@ -1,3 +1,8 @@
+#include <SPI.h>
+
+#include <SD.h>
+
+
 //AMBOS SENSORES DO SHT15 FUNCIONANDO SIMULTANEAMENTE
 
 #include<laicansat.h>

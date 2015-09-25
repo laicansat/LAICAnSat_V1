@@ -1,4 +1,6 @@
 #include<laicansat.h>
+#include <SPI.h>
+#include <SD.h>
 
 /**
  BMP180_THERMOMODE  =   1

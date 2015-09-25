@@ -1,17 +1,22 @@
+
 //TODOS OS SENSORES DA IMU FUNCIONANDO
 //TERMOMETRO, BAROMETRO, ACELEROMETRO, GIROSCOPIO
 //vou poder usar mais de uma instancia da mesma função?
-
+#include <SPI.h>
+#include <SD.h>
 #include <laicansat.h>
 
-const int led = LED_BUILTIN;
+const int led = 13; //MUDAR PARA 30
 double accelerations[3] = {0,0,0};
 double angularSpeeds[3] = {0,0,0};
+double temperatureSHT15 = 0.0;
+double gpsData[7] = {0,0,0,0,0,0,0};
 
 void setup()
 {
-  Serial.begin(9600);
-  
+  Serial.begin(38400);
+ 
+  laicansat.gps->beginGPS();
   laicansat.bar->begin(BMP180_BAROMODE);
   laicansat.thermo->begin(BMP180_THERMOMODE);
   laicansat.accel->begin();  
@@ -24,6 +29,8 @@ void setup()
 
 void loop()
 {
+   
+  laicansat.gps->getData(gpsData);
   double temperature1 = laicansat.thermo->getTemperature();
   double pressure = laicansat.bar->getPressure();
   //double humidity = laicansat.hygro->getHumidity();
@@ -31,11 +38,13 @@ void loop()
   laicansat.accel->getAcceleration(accelerations);
   laicansat.gyro->getAngularSpeed(angularSpeeds);
   
-  Serial.println("Humidity: ");
+
+  
+  //Serial.print("Humidity: ");
   //Serial.println(humidity);
   Serial.print("Temperature BMP180: ");
   Serial.println(temperature1);
-  Serial.println("Temperature STH15: ");
+  //Serial.print("Temperature STH15: ");
   //Serial.println(temperature2);
   Serial.print("Pressure: ");
   Serial.println(pressure);
@@ -52,7 +61,7 @@ void loop()
   Serial.print(", ");
   Serial.println(angularSpeeds[2]);
   digitalWrite(led, HIGH);
-  delay(100);
+  delay(1000);
   digitalWrite(led, LOW);
-  delay(100);
+  delay(1000);
 }

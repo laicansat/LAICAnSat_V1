@@ -1,31 +1,46 @@
-
-
-
-
 /*
- CS = 20
- MOSI = 7
- MISO = 8
- SCK = 14 
+  SD card datalogger
  
+ This example shows how to log data from three analog sensors 
+ to an SD card using the SD library.
+ 	
+ The circuit:
+ * SD card attached to SPI bus as follows:
+ ** UNO:  MOSI - pin 11, MISO - pin 12, CLK - pin 13, CS - pin 4 (CS pin can be changed)
+  and pin #10 (SS) must be an output
+ ** Mega:  MOSI - pin 51, MISO - pin 50, CLK - pin 52, CS - pin 4 (CS pin can be changed)
+  and pin #52 (SS) must be an output
+ ** Leonardo: Connect to hardware SPI via the ICSP header
+ 		Pin 4 used here for consistency with other Arduino examples
+ 
+ created  24 Nov 2010
+ modified 9 Apr 2012 by Tom Igoe
+ 
+ This example code is in the public domain.
+ 	 
  */
 
-#include <laicansat.h>
 #include <SPI.h>
 #include <SD.h>
 
-const int chipSelect = 20;
-const int led = 13;
+
+// On the Ethernet Shield, CS is pin 4. Note that even if it's not
+// used as the CS pin, the hardware CS pin (10 on most Arduino boards,
+// 53 on the Mega) must be left as an output or the SD library
+// functions will not work.
+const int chipSelect = 10;
 
 File dataFile;
 
 void setup()
 {
  
-  SPI.setMOSI(7);
-  SPI.setMISO(8);
-  SPI.setSCK(14);
+ // Open serial communications and wait for port to open:
   Serial.begin(9600);
+   while (!Serial) {
+    ; // wait for serial port to connect. Needed for Leonardo only
+  }
+
   delay(3500);
   Serial.print("Initializing SD card...");
   // make sure that the default chip select pin is set to
@@ -47,8 +62,6 @@ void setup()
     // Wait forever since we cant write data
     while (1) ;
   }
-  
-  
 }
 
 void loop()
@@ -77,12 +90,9 @@ void loop()
   // will save the file only every 512 bytes - every time a sector on the 
   // SD card is filled with data.
   dataFile.flush();
-  digitalWrite(led, HIGH);
-  delay(500);
-  digitalWrite(led, LOW);
-  delay(500);
-  // Take 1 measurement every 500 milliseconds
   
+  // Take 1 measurement every 500 milliseconds
+  delay(500);
 }
 
 
