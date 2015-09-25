@@ -118,12 +118,14 @@ void loop()
   dataFile.flush();
   
   // Take 1 measurement every 500 milliseconds
-  if (gpsData[2]>0){digitalWrite(led, HIGH);
+  if (gpsData[1]>0){
+  digitalWrite(led, HIGH);
   delay(100);
   digitalWrite(led, LOW);
-  delay(100);}
   
-  delay(200);
+  }
+  
+  delay(100);
 }
 
 /*String arrangeData (double temperatureBMP180, //double temperatureMS5611, double pressureBMP180, double arrayAccel, double angularSpeeds, double gpsData)
