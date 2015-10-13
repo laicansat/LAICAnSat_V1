@@ -7,18 +7,18 @@ void GPSClass::beginGPS(){
 
 	pinMode(led, OUTPUT);
 	this->gps_ublox = new GPS_UBLOX_Class();
-	/*delay(4000);
+	delay(4000);
 	gps_ublox->Fix = 10;
 	Serial.println(gps_ublox->Fix);
-	delay(3000);*/
+	delay(3000);
 	
 	Serial.println("Initializing GPS...");
 
 	this->gps_ublox->Init();
 
-	/*delay(4000);
+	delay(4000);
 	Serial.println(gps_ublox->Fix);
-	delay(3000);*/
+	delay(3000);
  
   	Serial.println("GPS initiation successful!");
   	//delay(3000);

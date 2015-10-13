@@ -15,8 +15,10 @@ void setup()
 {
   Serial.begin(9600);
   
-  
+  delay(3000);
   laicansat.thermo->begin(MS5611_THERMOMODE); 
+  laicansat.thermo->begin(BMP180_THERMOMODE);
+  laicansat.thermo->begin(SHT15_THERMOMODE);
   
   pinMode(led, OUTPUT);
   delay(100);
@@ -24,12 +26,18 @@ void setup()
 
 void loop()
 {
-  double temperature = laicansat.thermo->getTemperature();
+  double temperatureBMP180 = laicansat.thermo->getTemperatureBMP180();
+  double temperatureMS5611 = laicansat.thermo->getTemperatureMS5611();
+  double temperatureSHT15  = laicansat.thermo->getTemperatureSHT15();
+  
+  Serial.println(temperatureBMP180);
+  Serial.println(temperatureMS5611);
+  Serial.println(temperatureSHT15);
   
   
-  Serial.println(temperature);
   digitalWrite(led, HIGH);
-  delay(100);
+  delay(500);
   digitalWrite(led, LOW);
-  delay(100);
+  delay(500);
+  
 }

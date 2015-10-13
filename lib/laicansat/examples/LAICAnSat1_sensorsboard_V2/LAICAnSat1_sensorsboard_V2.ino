@@ -49,23 +49,30 @@ void setup()
     Serial.println("error opening datalog.txt");
     while (1) ;
   }
-  dataFile.println("TemperaturaBMP180,PressaoBMP180,AcelaracaoX,AceleracaoY,AceleracaoZ,VeloAnguX,VeloAnguY,VeloAngZ,Time,Fix,Latitude,Longitude,Altitude/1000,GroundSpeed/100,GroundCourse/100000");
+  dataFile.println("UmidadeSHT15,TemperaturaBMP180,TemperaturaMS5611,TemperaturaSHT15,PressaoBMP180,AcelaracaoX,AceleracaoY,AceleracaoZ,VeloAnguX,VeloAnguY,VeloAngZ,Time,Fix,Latitude,Longitude,Altitude/1000,GroundSpeed/100,GroundCourse/100000");
   laicansat.gps->beginGPS();
   laicansat.bar->begin(BMP180_BAROMODE);
   laicansat.thermo->begin(BMP180_THERMOMODE);
-  //laicansat.thermo->begin(MS5611_THERMOMODE);
+  laicansat.thermo->begin(MS5611_THERMOMODE);
+  laicansat.thermo->begin(SHT15_THERMOMODE);
   laicansat.accel->begin();  
   laicansat.gyro->begin();
+  laicansat.hygro->begin();
+  digitalWrite(led, HIGH);
   delay(100);
+ ;
   
 }
 
 void loop()
 {
   laicansat.gps->getData(gpsData);
-  double temperatureBMP180 = laicansat.thermo->getTemperature();
-  //double temperatureMS5611 = laicansat.thermo->getTemperature();
+  
+  double temperatureBMP180 = laicansat.thermo->getTemperatureBMP180();
+  double temperatureMS5611 = laicansat.thermo->getTemperatureMS5611();
+  double temperatureSHT15 = laicansat.thermo->getTemperatureSHT15();
   double pressureBMP180 = laicansat.bar->getPressure();
+  double humiditySHT15 = laicansat.hygro->getHumidity();
   laicansat.accel->getAcceleration(arrayAccel);
   laicansat.gyro->getAngularSpeed(angularSpeeds);
   //String dataString = "";
@@ -74,18 +81,21 @@ void loop()
   int count = 0;
   String dataString = "";
 
-
+  dataString += String (humiditySHT15);
+  dataString += ",";
   dataString += String (temperatureBMP180);
   dataString += ",";
-  /*dataString += String (temperatureMS5611);
-  dataString += ",";*/
+  dataString += String (temperatureMS5611);
+  dataString += ",";
+  dataString += String (temperatureSHT15);
+  dataString += ",";
   dataString += String (pressureBMP180);
   dataString += ",";
   
   for (count = 0; count < 3; count++) {
     
     dataString += String(arrayAccel[count]);
-    if (count < 2) 
+    if (count < 3) 
       dataString += ","; 
     
   }
@@ -119,10 +129,9 @@ void loop()
   
   // Take 1 measurement every 500 milliseconds
   if (gpsData[1]>0){
-  digitalWrite(led, HIGH);
-  delay(100);
   digitalWrite(led, LOW);
-  
+  delay(100);
+  digitalWrite(led, HIGH);
   }
   
   delay(100);

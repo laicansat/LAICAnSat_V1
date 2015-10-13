@@ -1,4 +1,3 @@
-//FALSO I2C PRECISA SER CONSERTADA A LIB SHT15
 
 #include "Hygrometer.h"
 

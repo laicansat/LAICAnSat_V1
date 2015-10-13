@@ -49,6 +49,7 @@ void setup()
     Serial.println("error opening datalog.txt");
     while (1) ;
   }
+  dataFile.println("TemperaturaBMP180,PressaoBMP180,AcelaracaoX,AceleracaoY,AceleracaoZ,VeloAnguX,VeloAnguY,VeloAngZ,Time,Fix,Latitude,Longitude,Altitude/1000,GroundSpeed/100,GroundCourse/100000");
   laicansat.gps->beginGPS();
   laicansat.bar->begin(BMP180_BAROMODE);
   laicansat.thermo->begin(BMP180_THERMOMODE);
@@ -102,6 +103,7 @@ void loop()
       dataString += ","; 
     
   }
+  
   dataFile.println(dataString);
 
   // print to the serial port too:
@@ -117,9 +119,9 @@ void loop()
   
   // Take 1 measurement every 500 milliseconds
   digitalWrite(led, HIGH);
-  delay(500);
+  delay(100);
   digitalWrite(led, LOW);
-  delay(500);
+  delay(100);
 }
 
 /*String arrangeData (double temperatureBMP180, //double temperatureMS5611, double pressureBMP180, double arrayAccel, double angularSpeeds, double gpsData)

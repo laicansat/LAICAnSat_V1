@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "WProgram.h"
 #endif
 
-#define MS5611_ADDRESS                (0x77)
+#define MS5611_ADDRESS                (0x76)
 
 #define MS5611_CMD_ADC_READ           (0x00)
 #define MS5611_CMD_RESET              (0x1E)

@@ -86,7 +86,7 @@ void ThermometerClass::beginMS5611()
 
 void ThermometerClass::beginSHT15()
 {
-  this->sht15 = new SHT1x(SDA_PIN, SCL_PIN);
+  this->sht15 = new SHT1x(15, 14);
 }
 
 void ThermometerClass::beginBMP085()

@@ -26,7 +26,7 @@ void setup()
   SPI.setMISO(8);
   SPI.setSCK(14);
   Serial.begin(9600);
-  delay(3500);
+  //delay(3500);
   Serial.print("Initializing SD card...");
   // make sure that the default chip select pin is set to
   // output, even if you don't use it:

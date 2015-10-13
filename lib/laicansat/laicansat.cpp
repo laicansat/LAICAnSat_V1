@@ -20,6 +20,6 @@ LaicansatClass::~LaicansatClass()
 	delete this->accel;
 	delete this->hygro;
 	delete this->thermo;
-	delete this->memSD;
+	//delete this->memSD;
 	delete this->gps;
 }
