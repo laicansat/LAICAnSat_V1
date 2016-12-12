@@ -16,6 +16,7 @@
 #include <SPI.h>
 #include <SD.h>
 
+
 const int chipSelect = 20;
 const int led = 13; //MUDAR PARA 30
 double arrayAccel[3] = {0,0,0};
@@ -50,7 +51,7 @@ void setup()
     while (1) ;
   }
   dataFile.println("UmidadeSHT15,TemperaturaBMP180,TemperaturaMS5611,TemperaturaSHT15,PressaoBMP180,AcelaracaoX,AceleracaoY,AceleracaoZ,VeloAnguX,VeloAnguY,VeloAngZ,Time,Fix,Latitude,Longitude,Altitude/1000,GroundSpeed/100,GroundCourse/100000");
-  laicansat.gps->beginGPS();
+
   laicansat.bar->begin(BMP180_BAROMODE);
   laicansat.thermo->begin(BMP180_THERMOMODE);
   laicansat.thermo->begin(MS5611_THERMOMODE);
@@ -66,7 +67,7 @@ void setup()
 
 void loop()
 {
-  laicansat.gps->getData(gpsData);
+
   
   double temperatureBMP180 = laicansat.thermo->getTemperatureBMP180();
   double temperatureMS5611 = laicansat.thermo->getTemperatureMS5611();
